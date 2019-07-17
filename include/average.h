@@ -48,8 +48,8 @@ class AverageRule: public BuiltinRule
 				void	addValue(double value)
 					{
 						m_samples++;
-						int divisor = m_type == AverageRule::SMA ? m_samples
-							: MIN(m_samples, m_factor);
+						int divisor = (m_type == AverageRule::SMA ? m_samples
+							: MIN(m_samples, m_factor));
 						m_average += ((value - m_average) / divisor);
 					};
 				double	average() { return m_average; };
