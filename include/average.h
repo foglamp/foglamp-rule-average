@@ -50,7 +50,7 @@ class AverageRule: public BuiltinRule
 						m_samples++;
 						int divisor = m_type == AverageRule::SMA ? m_samples
 							: MIN(m_samples, m_factor);
-						m_average += ((value - m_average) / m_samples);
+						m_average += ((value - m_average) / divisor);
 					};
 				double	average() { return m_average; };
 				void	setAverageType(AverageRule::AverageType type, int factor)

@@ -22,7 +22,7 @@ used to calculate that average.
 
 Exponential moving averages give more weight to the recent values compare
 to historical values. The smaller the EMA factor the more weight recent
-values carry. A value of 1 for facto will only consider at the most recent
+values carry. A value of 1 for factor will only consider at the most recent
 value.
 
 The Average rule is not applicable to all data, only simple numeric values
