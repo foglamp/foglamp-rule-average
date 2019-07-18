@@ -45,19 +45,6 @@ static const char *default_config = QUOTE({
 			"default":  RULE_NAME,
 			"readonly": "true"
 			},
-	"evaluation_type": {
-			"description": "Rule evaluation type",
-			"type": "enumeration",
-			"options": [ "window", "maximum", "minimum", "average", "latest" ],
-		       	"default": "latest",
-			"readonly":"true"
-			},
-	"time_window":	{
-			"description": "",
-			"type": "integer",
-			"default": DEFAULT_TIME_INTERVAL,
-			"readonly" : "true"
-		       	},
 	"asset": 	{
 			"description" : "Asset to monitor",
 			"type" : "string",
@@ -181,15 +168,7 @@ string plugin_triggers(PLUGIN_HANDLE handle)
 		  ++it)
 	{
 		ret += "{ \"asset\"  : \"" + (*it).first + "\"";
-		if (it->second && it->second->getEvaluation().empty() == false)
-		{
-			ret += ", \"" + (*it).second->getEvaluation() + "\" : " + \
-				to_string((*it).second->getInterval()) + " }";
-		}
-		else
-		{
-			ret += " }";
-		}
+		ret += " }";
 		
 		if (std::next(it, 1) != triggers.end())
 		{
