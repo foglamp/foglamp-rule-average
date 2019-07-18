@@ -243,7 +243,7 @@ bool plugin_eval(PLUGIN_HANDLE handle,
 			{
 				if (itr->value.IsInt64())
 				{
-					eval |= rule->evaluate(assetName, itr->name.GetString(), itr->value.GetInt64());
+					eval |= rule->evaluate(assetName, itr->name.GetString(), (long)itr->value.GetInt64());
 				}
 				else if (itr->value.IsDouble())
 				{
