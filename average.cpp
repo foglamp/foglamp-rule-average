@@ -134,7 +134,11 @@ bool AverageRule::evaluate(const string& asset, const string& datapoint, double 
 	if (rval)
 	{
 		Logger::getLogger()->warn("Deviation of %.1f%% in %s.%s  triggered alert, value is %.2f, average is %.2f",
-			       asset.c_str(), datapoint.c_str(), deviation, value, average);
+					  deviation,
+					  asset.c_str(),
+					  datapoint.c_str(),
+					  value,
+					  average);
 	}
 	return rval;
 }
