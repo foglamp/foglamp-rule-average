@@ -30,13 +30,13 @@
 
 static const char *default_config = QUOTE({
 	"description":	{
-			"description": RULE_NAME,
+			"description": "Trigger if the current value deviates from the moving average by more than a defined percentage",
 			"type": "string",
 			"default":  RULE_NAME,
 			"readonly": "true"
 			},
 	"plugin": 	{
-			"description": RULE_NAME,
+			"description": "Trigger if the current value deviates from the moving average by more than a defined percentage",
 			"type": "string",
 			"default":  RULE_NAME,
 			"readonly": "true"
