@@ -1,5 +1,5 @@
 /**
- * FogLAMP Average notification rule plugin
+ * Fledge Average notification rule plugin
  *
  * Copyright (c) 2019 Dianomic Systems
  *

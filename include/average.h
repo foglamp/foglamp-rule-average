@@ -1,7 +1,7 @@
 #ifndef _AVERAGE_RULE_H
 #define _AVERAGE_RULE_H
 /*
- * FogLAMP Average class
+ * Fledge Average class
  *
  * Copyright (c) 2019 Dianomic Systems
  *
