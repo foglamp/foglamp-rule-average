@@ -243,10 +243,15 @@ bool plugin_eval(PLUGIN_HANDLE handle,
 string plugin_reason(PLUGIN_HANDLE handle)
 {
 	AverageRule* rule = (AverageRule *)handle;
+	BuiltinRule::TriggerInfo info;
+	rule->getFullState(info);
 
 	string ret = "{ \"reason\": \"";
-	ret += rule->getState() == AverageRule::StateTriggered ? "triggered" : "cleared";
-	ret += "\" }";
+	ret += info.getState() == BuiltinRule::StateTriggered ? "triggered" : "cleared";
+	ret += "\"";
+	ret += ", \"asset\": " + info.getAssets() + ", \"timestamp\": \"" + info.getUTCDateTime() + "\"";
+	ret += " }";
+
 
 	return ret;
 }
