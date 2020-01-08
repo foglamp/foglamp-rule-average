@@ -209,6 +209,7 @@ bool plugin_eval(PLUGIN_HANDLE handle,
 	for (auto t = triggers.begin(); t != triggers.end(); ++t)
 	{
 		string assetName = t->first;
+		string assetTimestamp = "timestamp_" + assetName;
 		if (doc.HasMember(assetName.c_str()))
 		{
 			// Get all datapoints for assetName
@@ -225,6 +226,13 @@ bool plugin_eval(PLUGIN_HANDLE handle,
 				{
 					eval |= rule->evaluate(assetName, itr->name.GetString(), itr->value.GetDouble());
 				}
+			}
+			// Add evalution timestamp
+			if (doc.HasMember(assetTimestamp.c_str()))
+			{
+				const Value& assetTime = doc[assetTimestamp.c_str()];
+				double timestamp = assetTime.GetDouble();
+				rule->setEvalTimestamp(timestamp);
 			}
 		}
 	}
@@ -249,9 +257,12 @@ string plugin_reason(PLUGIN_HANDLE handle)
 	string ret = "{ \"reason\": \"";
 	ret += info.getState() == BuiltinRule::StateTriggered ? "triggered" : "cleared";
 	ret += "\"";
-	ret += ", \"asset\": " + info.getAssets() + ", \"timestamp\": \"" + info.getUTCDateTime() + "\"";
+	ret += ", \"asset\": " + info.getAssets();
+	if (rule->getEvalTimestamp())
+	{
+		ret += string(", \"timestamp\": \"") + info.getUTCTimestamp() + string("\"");
+	}
 	ret += " }";
-
 
 	return ret;
 }
